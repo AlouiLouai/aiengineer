@@ -1,0 +1,90 @@
+/* ── The isometric scene ── */
+.world { transition: transform 0.8s cubic-bezier(0.3, 0.7, 0.2, 1); transform-origin: 0 0; }
+.edge { fill: none; stroke: var(--lane); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 8; }
+.lane-line { fill: none; stroke: var(--lane); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 5 7; transition: stroke 0.4s; }
+.lane-arrow { fill: var(--lane); transition: fill 0.4s; }
+.lane.is-used .lane-line { stroke: color-mix(in srgb, var(--tone) 60%, var(--card)); stroke-dasharray: none; }
+.lane.is-used .lane-arrow { fill: var(--tone); }
+.lane.is-active .lane-line { stroke-width: 3; }
+
+.node { --blk: #94a3b8; transition: opacity 0.4s ease; }
+.node.is-hidden { opacity: 0; pointer-events: none; }
+.node.is-quiet { opacity: 0.62; }
+.node.is-off { opacity: 0.34; }
+.kind-user { --blk: #64748b; }
+.kind-app { --blk: #3b82f6; }
+.kind-model { --blk: #b8386f; }
+.kind-agent { --blk: #10b981; }
+.kind-db { --blk: #8b5cf6; }
+.kind-doc { --blk: #94a3b8; }
+.kind-tool { --blk: #f59e0b; }
+.kind-guard { --blk: #f43f5e; }
+.kind-cache { --blk: #eab308; }
+.kind-judge { --blk: #14b8a6; }
+.kind-queue { --blk: #6366f1; }
+.kind-cloud { --blk: #0ea5e9; }
+.blk-side { fill: color-mix(in srgb, var(--blk) 34%, #fff); transition: fill 0.3s; }
+.blk-shade { fill: var(--blk); opacity: 0.3; }
+.blk-top { fill: color-mix(in srgb, var(--blk) 15%, #fff); transition: fill 0.3s; }
+.blk-line { fill: none; stroke: color-mix(in srgb, var(--blk) 62%, #fff); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.blk-icon { fill: none; stroke: color-mix(in srgb, var(--blk) 78%, #14060d); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+:root[data-theme='dark'] .blk-side { fill: color-mix(in srgb, var(--blk) 42%, #121212); }
+:root[data-theme='dark'] .blk-shade { fill: #000; opacity: 0.32; }
+:root[data-theme='dark'] .blk-top { fill: color-mix(in srgb, var(--blk) 62%, #1c1c1c); }
+:root[data-theme='dark'] .blk-line { stroke: color-mix(in srgb, var(--blk) 80%, #fff); stroke-opacity: 0.6; }
+:root[data-theme='dark'] .blk-icon { stroke: #fff; }
+.node.is-off .blk-line { stroke-dasharray: 5 5; }
+.node-shadow { fill: #1a1a2e; opacity: 0.09; }
+:root[data-theme='dark'] .node-shadow { fill: #000; opacity: 0.5; }
+.node-base { fill: color-mix(in srgb, var(--base, var(--primary)) 12%, transparent); stroke: var(--base, var(--primary)); stroke-width: 2; stroke-linejoin: round; opacity: 0; transition: opacity 0.3s; }
+.node.is-hot .node-base { opacity: 1; animation: glow 1.8s ease-in-out 4; }
+.node.is-ok { --base: var(--t-ok); }
+.node.is-warn { --base: var(--t-warn); }
+.node.is-bad { --base: var(--t-bad); }
+.node:is(.is-ok, .is-warn, .is-bad) .node-base { opacity: 1; }
+@keyframes glow { 50% { stroke-width: 5; stroke-opacity: 0.5; } }
+.node-badge { animation: badge 0.4s cubic-bezier(0.3, 1.7, 0.5, 1) both; }
+.node-badge circle { fill: var(--base); stroke: var(--card); stroke-width: 3; }
+.node-badge path { fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes badge { from { transform: scale(0); } }
+
+/* Cause: the sender lifts. Effect: the receiver takes the weight and answers. */
+.is-sending .node-body { animation: lift 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+@keyframes lift { 40% { transform: translateY(-9px); } }
+.is-receiving .node-body { animation: press 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+@keyframes press { 25% { transform: translateY(5px); } 60% { transform: translateY(-3px); } }
+.is-receiving .blk-top { fill: color-mix(in srgb, var(--tone) 45%, #fff); }
+.ripple { fill: none; stroke: var(--tone); stroke-width: 3; animation: ripple 0.6s ease-out both; }
+@keyframes ripple { from { transform: scale(0.6); opacity: 0.9; } to { transform: scale(1.35); opacity: 0; } }
+.scan { fill: color-mix(in srgb, var(--tone) 30%, transparent); stroke: var(--tone); stroke-width: 2.5; animation: scan 0.55s ease-in-out both; }
+@keyframes scan { from { opacity: 1; } 80% { opacity: 1; } to { transform: translateY(56px); opacity: 0; } }
+.lid { fill: color-mix(in srgb, var(--tone) 35%, transparent); stroke: var(--tone); stroke-width: 2; animation: lid 0.55s ease-out both; }
+@keyframes lid { to { transform: translateY(-30px); opacity: 0; } }
+.sparks path { fill: var(--tone); animation: spark 0.6s ease-out both; }
+@keyframes spark { from { opacity: 0; transform: translateY(22px); } 35% { opacity: 1; } to { opacity: 0; transform: translateY(-34px); } }
+
+.pill rect { fill: var(--card); stroke: var(--border); stroke-width: 1.2; }
+.pill text { font: 600 13.5px var(--font-aspekta), sans-serif; fill: var(--foreground); text-anchor: middle; dominant-baseline: central; }
+.pill-note { animation: note-in 0.45s cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+@keyframes note-in { from { transform: translateY(8px); opacity: 0; } }
+.pill-note rect, .pill-link rect { fill: color-mix(in srgb, var(--tone, var(--card)) 15%, var(--card)); stroke: color-mix(in srgb, var(--tone, var(--border)) 45%, var(--card)); }
+.pill-note text, .pill-link text { fill: color-mix(in srgb, var(--tone, var(--foreground)) 62%, var(--foreground)); }
+.pill-link { opacity: 0; transition: opacity 0.25s; }
+.pill-link.is-on { opacity: 1; }
+.pill-payload rect { fill: var(--tone); stroke: none; }
+.pill-payload text { fill: #fff; }
+:root[data-theme='dark'] .pill-payload text { fill: #0c0c10; }
+.meter-box { fill: var(--card); stroke: var(--border); stroke-width: 1.2; }
+.meter-track { fill: var(--accent-bg); }
+.meter-fill { fill: var(--primary); transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), fill 0.4s; }
+.meter-fill.is-full { fill: var(--t-bad); }
+.meter text { font: 600 13px var(--font-aspekta), sans-serif; fill: var(--foreground); dominant-baseline: central; transition: opacity 0.4s; }
+.stop { animation: badge 0.35s cubic-bezier(0.3, 1.9, 0.5, 1) both; }
+.stop circle { fill: var(--t-bad); stroke: var(--card); stroke-width: 3; }
+.stop path { stroke: #fff; stroke-width: 3; stroke-linecap: round; }
+.burst { fill: var(--t-bad); animation: burst 0.5s ease-out both; }
+@keyframes burst { from { transform: translateX(8px); } to { transform: translateX(40px) scale(0.2); opacity: 0; } }
+.packet-tail { fill: none; stroke: var(--tone); stroke-width: 5; stroke-linecap: round; opacity: 0.55; }
+.packet-dot { fill: var(--tone); }
+.packet-core { fill: #fff; }
+.packet-halo { fill: var(--tone); opacity: 0.2; }

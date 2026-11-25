@@ -1,0 +1,25 @@
+/* ───────────── Buttons, tags, tiles ───────────── */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: none;
+  min-height: 36px; padding: 0 14px; border-radius: 10px; border: 1px solid transparent; background: none;
+  font-size: 14px; font-weight: 500; white-space: nowrap; transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+.btn-primary { background: var(--primary); color: var(--primary-foreground); }
+.btn-primary:hover { background: color-mix(in srgb, var(--primary) 90%, #000); }
+.btn-outline { border-color: var(--input); background: var(--card); box-shadow: var(--shadow-sm); }
+.btn-outline:hover, .btn-ghost:hover { background: var(--accent-bg); }
+.btn-sm { min-height: 32px; padding: 0 12px; font-size: 13px; }
+.btn-lg { min-height: 42px; padding: 0 20px; }
+.icon-btn { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border: 0; border-radius: 10px; background: none; transition: background 0.15s; }
+.icon-btn:hover { background: var(--accent-bg); }
+.icon-btn.is-primary { background: var(--primary); color: var(--primary-foreground); border-radius: 50%; }
+.icon-btn.is-primary:hover { background: color-mix(in srgb, var(--primary) 88%, #000); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--border); background: var(--card); color: var(--muted-foreground); white-space: nowrap; }
+.tag::first-letter { text-transform: uppercase; }
+.tag-accent { border-color: color-mix(in srgb, var(--primary) 30%, transparent); background: color-mix(in srgb, var(--primary) 8%, transparent); color: var(--primary-text); }
+.tile { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 10px; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.tile svg.lucide { width: 20px; height: 20px; }
+.tile-lg { width: 48px; height: 48px; }
+.tile-lg svg.lucide { width: 26px; height: 26px; }

@@ -1,0 +1,98 @@
+/* ───────────── Labs ───────────── */
+.lab-stage { background: var(--card); padding: 22px 24px 24px; }
+.lab-head h2 { font-size: 20px; }
+.lab-loading { padding: 40px 0; }
+.lab { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 22px; margin-top: 18px; animation: fade-up 0.35s ease both; }
+.lab-panel { min-width: 0; align-self: start; padding: 18px; border-radius: var(--radius); border: 1px solid var(--border); background: radial-gradient(circle at 1px 1px, var(--dots) 1px, transparent 1.5px) 0 0 / 22px 22px var(--background); }
+.lab-prompt { font-size: 15px; margin-bottom: 14px; }
+.lab-prompt b { font-weight: 600; }
+.lab-key { margin-top: 12px; font-size: 11.5px; color: var(--muted-foreground); }
+.lab-side { display: grid; gap: 16px; align-content: start; }
+.lab-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-actions .btn { flex: 1; }
+.dial { display: grid; gap: 6px; font-size: 13px; }
+.dial-head { display: flex; justify-content: space-between; gap: 10px; }
+.dial output { font-weight: 600; font-variant-numeric: tabular-nums; }
+.dial input { appearance: none; width: 100%; height: 22px; margin: 0; background: none; cursor: pointer; }
+.dial input::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--primary) var(--fill), color-mix(in srgb, var(--primary) 18%, var(--card)) var(--fill)); }
+.dial input::-moz-range-track { height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--primary) var(--fill), color-mix(in srgb, var(--primary) 18%, var(--card)) var(--fill)); }
+.dial input::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; margin-top: -6px; border-radius: 50%; background: #fff; border: 2px solid var(--primary); box-shadow: var(--shadow-sm); }
+.dial input::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid var(--primary); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.facts .chip { min-width: 0; }
+.lab-insight { padding: 11px 14px; border-radius: 10px; font-size: 13px; background: color-mix(in srgb, var(--tone) 9%, var(--card)); border: 1px solid color-mix(in srgb, var(--tone) 24%, transparent); }
+.lab-blank { display: inline-block; min-width: 90px; padding: 1px 12px; border-radius: 8px; text-align: center; font-weight: 600; background: var(--primary); color: #fff; }
+
+.dist { display: grid; gap: 7px; }
+.dist li { display: grid; grid-template-columns: 76px 1fr 50px 28px; gap: 10px; align-items: center; font-size: 13px; font-variant-numeric: tabular-nums; transition: opacity 0.3s; }
+.dist li.is-cut { opacity: 0.45; }
+.dist li.is-last .dist-word { color: var(--primary-text); font-weight: 600; }
+.dist-track { position: relative; height: 18px; border-radius: 6px; background: var(--accent-bg); overflow: hidden; }
+.dist-track > span { position: absolute; inset: 0; transform-origin: left; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.35s; }
+.dist-ghost { background: color-mix(in srgb, var(--primary) 25%, transparent); }
+.dist-fill { background: var(--primary); }
+.dist-track > .dist-mark { inset: 0 auto 0 0; width: 3px; background: var(--foreground); box-shadow: 0 0 0 1px var(--card); }
+.dist-num, .dist-count { text-align: right; }
+.dist-count { color: var(--muted-foreground); font-size: 11px; }
+
+.hue-0 { --h: var(--t-neutral); } .hue-1 { --h: var(--t-accent); } .hue-2 { --h: var(--t-warn); } .hue-3 { --h: #14b8a6; }
+.chunk-text { font-size: 15px; line-height: 2; }
+.chunk-word { padding: 3px 0; background: color-mix(in srgb, var(--h) 18%, var(--card)); transition: background 0.3s; }
+.chunk-word.is-double { background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--h) 34%, var(--card)) 0 5px, color-mix(in srgb, var(--h) 12%, var(--card)) 5px 10px); }
+.chunk-word.is-start { box-shadow: -3px 0 0 var(--h); }
+.chunk-word.is-fact { text-decoration: underline 2px var(--primary); text-underline-offset: 5px; font-weight: 600; }
+.chunk-rail { position: relative; height: 32px; margin-top: 16px; }
+.chunk-rail span { position: absolute; height: 12px; border-radius: 99px; border: 2px solid var(--background); background: color-mix(in srgb, var(--h) 60%, var(--card)); transition: 0.3s; }
+.chunk-rail .is-hit { background: var(--t-ok); box-shadow: 0 0 0 2px var(--t-ok); }
+
+.swarm { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; max-width: 420px; }
+.swarm span { aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px; font-size: 12px; font-weight: 600; color: #fff; background: var(--t-neutral); transition: background 0.25s, transform 0.25s, opacity 0.25s; }
+.swarm .is-dead { background: var(--t-bad); opacity: 0.75; transform: scale(0.82); }
+.swarm .is-ok { background: var(--t-ok); }
+
+.plot { display: block; width: 100%; height: auto; overflow: visible; }
+.plot-pass { fill: color-mix(in srgb, var(--t-ok) 9%, transparent); }
+.plot-dot { stroke-width: 2.5; transition: r 0.2s; }
+.plot-dot.is-good { fill: var(--t-ok); stroke: var(--t-ok); }
+.plot-dot.is-bad { fill: var(--t-bad); stroke: var(--t-bad); }
+.plot-dot.is-wrong { fill: var(--card); }
+.plot-cut { stroke: var(--primary); stroke-width: 2.5; stroke-dasharray: 7 5; }
+.plot-base, .plot-axis { stroke: var(--lane); stroke-width: 1.5; }
+.plot-label { font-size: 12px; fill: var(--muted-foreground); }
+.plot-line { fill: none; stroke: var(--t-neutral); stroke-width: 3; stroke-linejoin: round; }
+.plot-head { fill: var(--t-neutral); stroke: var(--card); stroke-width: 3; }
+.plot-line.is-bad { stroke: var(--t-bad); }
+.plot-head.is-bad { fill: var(--t-bad); }
+
+.router { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.router-bin { padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); min-height: 170px; }
+.router-dots { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-content: start; }
+.router-dots span, .router-key li::before { width: 15px; height: 15px; border-radius: 5px; animation: badge 0.3s ease both; }
+.router .is-easy, .router-key .is-easy::before { background: color-mix(in srgb, var(--t-neutral) 45%, var(--card)); }
+.router .is-hard, .router-key .is-hard::before { background: var(--t-ok); border-radius: 50%; }
+.router .is-waste, .router-key .is-waste::before { background: var(--card); box-shadow: inset 0 0 0 2.5px var(--t-warn); }
+.router .is-fail, .router-key .is-fail::before { background: var(--t-bad); border-radius: 2px; transform: rotate(45deg); animation: none; }
+.router-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: 12px; color: var(--muted-foreground); }
+.router-key li { display: flex; align-items: center; gap: 7px; }
+.router-key li::before { content: ''; width: 12px; height: 12px; animation: none; }
+
+.attacks { display: grid; gap: 12px; }
+.attacks li { display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; font-size: 13px; }
+.attack-track { grid-column: 1 / -1; grid-row: 2; position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; height: 16px; }
+.attack-track > span:not(.attack-dot) { border-radius: 5px; background: var(--accent-bg); transition: background 0.3s; }
+.attack-track > .is-on:not(.attack-dot) { background: color-mix(in srgb, var(--t-ok) 32%, var(--card)); }
+.attack-dot { position: absolute; top: 0; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: var(--t-bad); border: 3px solid var(--card); transition: left 0.65s cubic-bezier(0.4, 0, 0.3, 1); }
+.attack-result { font-size: 12px; font-weight: 600; color: var(--muted-foreground); text-align: right; }
+.is-stopped .attack-result { color: var(--t-ok); }
+.is-through .attack-result { color: var(--t-bad); }
+.is-stopped .attack-dot { background: var(--t-ok); }
+.switches { display: grid; gap: 12px; }
+.switch { display: flex; gap: 12px; cursor: pointer; font-size: 13px; line-height: 1.35; }
+.switch input { position: absolute; opacity: 0; }
+.switch b { font-weight: 600; display: block; }
+.switch small { font-size: 11.5px; color: var(--muted-foreground); }
+.switch-track { position: relative; width: 34px; height: 20px; flex: none; border-radius: 99px; background: var(--input); transition: background 0.2s; }
+.switch-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
+.switch input:checked + .switch-track { background: var(--primary); }
+.switch input:checked + .switch-track::after { transform: translateX(14px); }
+.switch input:focus-visible + .switch-track { outline: 3px solid color-mix(in srgb, var(--primary) 50%, transparent); outline-offset: 2px; }

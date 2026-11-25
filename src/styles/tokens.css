@@ -1,0 +1,73 @@
+/* ───────────── Tokens: the Tounsi design system ───────────── */
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+  --background: hsl(216 24% 96%);
+  --foreground: hsl(30 33% 13%);
+  --card: hsl(0 0% 100%);
+  --primary: hsl(335 54% 45%);
+  --primary-text: hsl(335 54% 45%);
+  --primary-foreground: hsl(216 24% 96%);
+  --muted: hsl(220 18% 97%);
+  --muted-foreground: hsl(220 9% 41%);
+  --accent-bg: hsl(220 18% 94%);
+  --destructive: hsl(349 57% 49%);
+  --warning: hsl(32 90% 30%);
+  --success: #4f9c63;
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 88%);
+  --sidebar: hsl(0 0% 100%);
+  --shadow-sm: 0 1px 3px rgb(20 20 40 / 0.08), 0 1px 2px -1px rgb(20 20 40 / 0.08);
+  --shadow-md: 0 6px 16px -6px rgb(20 20 40 / 0.16), 0 2px 5px -2px rgb(20 20 40 / 0.1);
+  --dots: hsl(220 14% 88%);
+  --lane: hsl(220 13% 80%);
+  /* packet and status colours */
+  --t-neutral: #3b82f6;
+  --t-ok: #3f9a5b;
+  --t-accent: #8b5cf6;
+  --t-warn: #e08a1e;
+  --t-bad: hsl(349 62% 52%);
+  --topbar: 3.5rem;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: hsl(0 0% 6%);
+  --foreground: hsl(0 0% 96%);
+  --card: hsl(0 0% 9%);
+  --primary-text: hsl(335 66% 66%);
+  --primary-foreground: hsl(0 0% 96%);
+  --muted: hsl(0 0% 13%);
+  --muted-foreground: hsl(0 0% 60%);
+  --accent-bg: hsl(0 0% 15%);
+  --destructive: hsl(349 70% 62%);
+  --warning: hsl(38 90% 62%);
+  --success: #5fb377;
+  --border: hsl(0 0% 15%);
+  --input: hsl(0 0% 19%);
+  --sidebar: hsl(0 0% 9%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 8px 20px -8px rgb(0 0 0 / 0.8);
+  --dots: hsl(0 0% 17%);
+  --lane: hsl(0 0% 30%);
+  --t-neutral: #60a5fa;
+  --t-ok: #5fbf7d;
+  --t-accent: #a78bfa;
+  --t-warn: #f0a93e;
+  --t-bad: hsl(349 75% 64%);
+}
+
+/* One tint per area, the way Tounsi tints its API tiles. */
+:root { --accent: var(--primary); }
+[data-area='llm'] { --accent: #8b5cf6; }
+[data-area='rag'] { --accent: #3b82f6; }
+[data-area='agents'] { --accent: #10b981; }
+[data-area='evals'] { --accent: #f59e0b; }
+[data-area='system-design'] { --accent: #06b6d4; }
+[data-area='security'] { --accent: #f43f5e; }
+[data-area='deployment'] { --accent: #84a816; }
+
+.tone-neutral { --tone: var(--t-neutral); }
+.tone-accent { --tone: var(--t-accent); }
+.tone-ok { --tone: var(--t-ok); }
+.tone-warn { --tone: var(--t-warn); }
+.tone-bad { --tone: var(--t-bad); }

@@ -1,0 +1,43 @@
+{
+  "name": "ai-engineer-course",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.18.3",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/postbuild.mjs",
+    "preview": "serve out",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
+  "dependencies": {
+    "lucide-react": "^1.80.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^10.15.0",
+    "eslint-config-next": "16.4.6",
+    "happy-dom": "^21.0.4",
+    "serve": "^14.2.8",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.2"
+  }
+}

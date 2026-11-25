@@ -1,0 +1,25 @@
+/* ───────────── Quiz and review ───────────── */
+.quiz-stage { padding: clamp(20px, 5vw, 48px); background: var(--card); min-height: 420px; display: grid; align-content: center; }
+.quiz { display: grid; gap: 16px; width: min(640px, 100%); margin-inline: auto; justify-items: start; animation: fade-up 0.35s ease both; }
+.quiz > * { max-width: 100%; }
+.quiz-q { outline: 0; font-size: 21px; line-height: 1.35; }
+.quiz-options { display: grid; gap: 10px; width: 100%; }
+.quiz-option { display: flex; align-items: center; gap: 14px; width: 100%; padding: 13px 16px; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--card); text-align: left; font-size: 15px; transition: border-color 0.2s, background 0.2s, opacity 0.2s; animation: fade-up 0.35s ease both; }
+.quiz-option:not([aria-disabled='true']):hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 4%, var(--card)); }
+.quiz-option[aria-disabled='true'] { cursor: default; }
+.quiz-letter { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--accent-bg); color: var(--muted-foreground); }
+.quiz-option.is-right { border-color: var(--t-ok); background: color-mix(in srgb, var(--t-ok) 9%, var(--card)); }
+.quiz-option.is-right .quiz-letter { background: var(--t-ok); color: #fff; }
+.quiz-option.is-wrong { border-color: var(--t-bad); background: color-mix(in srgb, var(--t-bad) 8%, var(--card)); }
+.quiz-option.is-wrong .quiz-letter { background: var(--t-bad); color: #fff; }
+.quiz-option.is-dim { opacity: 0.55; }
+.quiz-why { padding: 13px 16px; border-radius: var(--radius); --b: var(--t-ok); background: color-mix(in srgb, var(--b) 9%, var(--card)); animation: fade-up 0.3s ease both; }
+.quiz-why.is-wrong { --b: var(--t-bad); }
+.quiz-why strong { color: color-mix(in srgb, var(--b) 78%, var(--foreground)); }
+.quiz-end { justify-items: center; text-align: center; }
+.ring { width: 120px; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke: var(--accent-bg); stroke-width: 10; }
+.ring .ring-fill { stroke: var(--success); stroke-linecap: round; animation: ring 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes ring { from { stroke-dasharray: 0 100; } }
+.quiz-score { margin-top: -84px; margin-bottom: 44px; font-size: 24px; font-weight: 600; line-height: 1.5; }
+.review-more { margin-top: 24px; text-align: center; }
