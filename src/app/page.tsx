@@ -19,7 +19,7 @@ export default function HomePage() {
         </h1>
         <p className="page-sub">
           Watch a request move through real AI systems, one animated step at a time. Then play with the numbers, and
-          test yourself until it stays.
+          test yourself until it stays. Free and open source, made by louAI.
         </p>
       </header>
 

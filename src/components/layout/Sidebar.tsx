@@ -116,10 +116,15 @@ export function Sidebar({ nav, pathname, collapsed, onExpand }: SidebarProps) {
       </div>
 
       <div className="side-foot">
-        <span className="live-dot" aria-hidden="true" />
-        <span>
-          {finished} of {total} lessons finished
-        </span>
+        <p className="side-progress">
+          <span className="live-dot" aria-hidden="true" />
+          <span>
+            {finished} of {total} lessons finished
+          </span>
+        </p>
+        <p className="side-credit">
+          Made by <strong>louAI</strong>
+        </p>
       </div>
     </>
   );

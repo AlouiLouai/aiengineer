@@ -17,6 +17,8 @@ const aspekta = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  authors: [{ name: 'louAI' }],
+  creator: 'louAI',
   title: {
     default: 'AI Engineer Course',
     template: '%s | AI Engineer',

@@ -2,6 +2,9 @@
   "name": "ai-engineer-course",
   "version": "0.1.0",
   "private": true,
+  "description": "An open-source, animated course in AI engineering: 40 lessons, 7 simulators, quizzes and spaced review.",
+  "license": "MIT",
+  "author": "louAI",
   "packageManager": "pnpm@10.18.3",
   "engines": {
     "node": ">=22.13"

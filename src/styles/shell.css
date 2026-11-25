@@ -26,11 +26,14 @@ svg.lucide.side-caret { width: 14px; height: 14px; color: var(--muted-foreground
 .side-lesson.is-more { font-size: 11px; color: var(--muted-foreground); }
 .side-dot { width: 7px; height: 7px; flex: none; border-radius: 50%; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--muted-foreground) 55%, transparent); }
 .is-done > .side-dot { background: var(--success); box-shadow: none; }
-.side-foot { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted-foreground); white-space: nowrap; }
+.side-foot { display: grid; gap: 6px; padding: 12px 18px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted-foreground); white-space: nowrap; }
+.side-progress { display: flex; align-items: center; gap: 8px; }
+.side-credit { padding-left: 16px; font-size: 10.5px; }
+.side-credit strong { font-weight: 600; color: var(--primary-text); }
 .live-dot { position: relative; width: 8px; height: 8px; flex: none; border-radius: 50%; background: #10b981; }
 .live-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: rgb(57 214 164 / 0.55); animation: live 1.9s ease-out 4; will-change: transform; }
 @keyframes live { 65%, 100% { transform: scale(2.5); opacity: 0; } }
-.is-collapsed .sidebar:not(.is-open) :is(.brand-name, .brand-badge, .side-item > span, .side-caret, .side-foot span:last-child) { display: none; }
+.is-collapsed .sidebar:not(.is-open) :is(.brand-name, .brand-badge, .side-item > span, .side-caret, .side-progress span:last-child, .side-credit) { display: none; }
 .is-collapsed .sidebar:not(.is-open) .side-label { font-size: 0; padding: 8px 0 0; }
 .is-collapsed .sidebar:not(.is-open) .side-item { justify-content: center; padding: 0; }
 
