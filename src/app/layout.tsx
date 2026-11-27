@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { Analytics } from '@/components/layout/Analytics';
 import { SiteShell } from '@/components/layout/SiteShell';
 import { nav } from '@/content';
 import { siteUrl } from '@/lib/site';
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <SiteShell nav={nav}>{children}</SiteShell>
+        <Analytics />
       </body>
     </html>
   );

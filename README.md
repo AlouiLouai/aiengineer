@@ -20,7 +20,7 @@ Made by **louAI**. Free and open source under the [MIT License](LICENSE).
 - **Hands-free when you want.** Auto mode plays a whole lesson at reading speed. Moving the mouse over a
   finished diagram replays it.
 
-No account, no tracking, no server: progress stays in your browser.
+No account, no cookies, no server: progress stays in your browser. Visits are counted with cookieless [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) (no personal data); build with `CF_BEACON_TOKEN=""` to turn it off.
 
 ## Course map
 

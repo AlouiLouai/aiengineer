@@ -45,5 +45,13 @@ describe('content security policy', () => {
     expect(html).toContain("script-src 'self' 'sha256-bhHHL3z2vDgxUt0W3dWQOrprscmda2Y5pLsLg4GF+pI='");
     expect(html.match(/sha256-/g)).toHaveLength(1);
     expect(html.split('script-src')[1].split(';')[0]).not.toContain('unsafe-inline');
+    expect(html).not.toContain('cloudflareinsights');
+  });
+  it('allows the analytics beacon only on pages that load it', () => {
+    const html = withPolicy(
+      '<html><head></head><body><script defer src="https://static.cloudflareinsights.com/beacon.min.js"></script></body></html>',
+    );
+    expect(html).toContain("script-src 'self' https://static.cloudflareinsights.com");
+    expect(html).toContain("connect-src 'self' https://cloudflareinsights.com");
   });
 });

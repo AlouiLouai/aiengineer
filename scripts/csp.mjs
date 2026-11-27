@@ -7,22 +7,29 @@
  */
 import { createHash } from 'node:crypto';
 
+// Cloudflare Web Analytics: the beacon script, and where it reports page views.
+const beacon = { script: 'https://static.cloudflareinsights.com', report: 'https://cloudflareinsights.com' };
+
 export function withPolicy(html) {
   const hashes = new Set();
   for (const [, attrs, body] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
     if (/\ssrc=/.test(attrs) || !body) continue;
     hashes.add(`'sha256-${createHash('sha256').update(body).digest('base64')}'`);
   }
+  const analytics = html.includes(`src="${beacon.script}/`);
   const policy = [
     "default-src 'self'",
-    `script-src 'self' ${[...hashes].join(' ')}`.trim(),
+    ['script-src', "'self'", analytics && beacon.script, ...hashes].filter(Boolean).join(' '),
+    analytics && `connect-src 'self' ${beacon.report}`,
     // React writes style attributes (bar widths, animation delays).
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-  ].join('; ');
+  ]
+    .filter(Boolean)
+    .join('; ');
   if (!html.includes('<head>')) throw new Error('page has no <head>');
   return html.replace('<head>', `<head><meta http-equiv="Content-Security-Policy" content="${policy}"/>`);
 }
