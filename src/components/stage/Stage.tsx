@@ -151,6 +151,22 @@ export function Stage({ nodes, scene, timeline, still = false, label }: StagePro
   const active = tick < flows.length ? flows[tick] : undefined;
   const activeLane = active && laneKey(active[0], active[1]);
 
+  // On a narrow screen the diagram scrolls sideways: keep the packet in flight in view.
+  const svg = useRef<SVGSVGElement>(null);
+  const [from, to] = active ?? [];
+  useLayoutEffect(() => {
+    const box = svg.current?.parentElement;
+    if (!box || !from || !to || box.scrollWidth <= box.clientWidth + 1) return;
+    const node = (id: string) => nodes.find((nd) => nd.id === id);
+    const a = node(from);
+    const b = node(to);
+    if (!a || !b) return;
+    const mid = L.toView((at(a).x + at(b).x) / 2) / VW;
+    const left = mid * box.scrollWidth - box.clientWidth / 2;
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.scrollTo({ left, behavior: calm ? 'auto' : 'smooth' });
+  }, [from, to, nodes, L]);
+
   // A lane takes the colour of its latest packet; its chip rests beside it until the lane is reused.
   const laneTone = new Map<string, Tone>();
   flows.forEach(([a, b, tone = 'neutral', , end], i) => {
@@ -166,7 +182,7 @@ export function Stage({ nodes, scene, timeline, still = false, label }: StagePro
   };
 
   return (
-    <svg className="stage-svg" viewBox={`0 0 ${VW} ${VH}`} role="img" aria-label={label}>
+    <svg ref={svg} className="stage-svg" viewBox={`0 0 ${VW} ${VH}`} role="img" aria-label={label}>
       <g className="world" style={{ transform: L.camera }}>
         <g>
           {L.plain.map(([a, b]) => (

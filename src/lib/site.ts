@@ -2,7 +2,7 @@
 export const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
 
 /**
- * Cloudflare Web Analytics site token: public by design, it ships in every page.
- * Cookieless page views only. Set CF_BEACON_TOKEN="" at build time to turn it off (forks, staging).
+ * Cloudflare Web Analytics site token, set as a build variable by whoever deploys.
+ * Unset means no analytics: forks and local builds never report to someone else's dashboard.
  */
-export const analyticsToken = process.env.CF_BEACON_TOKEN ?? '5b231235254c4a95a9a058cf1969875a';
+export const analyticsToken = process.env.CF_BEACON_TOKEN || '';

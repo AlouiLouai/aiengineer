@@ -1,7 +1,7 @@
 'use client';
 
 import { Maximize, Pause, Play, RotateCcw } from 'lucide-react';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useSyncExternalStore } from 'react';
 import type { FlowSpec, SceneNode } from '@/content/types';
 import type { Timeline } from '@/lib/useTimeline';
 
@@ -22,7 +22,13 @@ interface Props {
 }
 
 /** The player bar: a subtitle saying what is moving now, and one seekable segment per packet. */
+// iPhone Safari has no element full screen. Known only in the browser, so the server renders without it.
+const noop = () => () => {};
+const useCanFullscreen = () =>
+  useSyncExternalStore(noop, () => Boolean(document.fullscreenEnabled), () => false);
+
 export function StageControls({ flows, nodes, timeline, playing, speed, auto, onPlay, onReplay, onSpeed, onAuto, onFullscreen }: Props) {
+  const canFullscreen = useCanFullscreen();
   const name = (id: string) => nodes.find((node) => node.id === id)?.label ?? id;
   const tick = Math.min(Math.floor(timeline.cursor / 2), Math.max(0, flows.length - 1));
   const flow = flows[tick];
@@ -81,9 +87,11 @@ export function StageControls({ flows, nodes, timeline, playing, speed, auto, on
         >
           Auto
         </button>
-        <button type="button" className="icon-btn" onClick={onFullscreen} aria-label="Full screen" title="Full screen (F)">
-          <Maximize />
-        </button>
+        {canFullscreen && (
+          <button type="button" className="icon-btn" onClick={onFullscreen} aria-label="Full screen" title="Full screen (F)">
+            <Maximize />
+          </button>
+        )}
       </div>
     </div>
   );

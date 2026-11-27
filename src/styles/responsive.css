@@ -5,7 +5,8 @@
   .step { min-height: 0; }
   .hero { grid-template-columns: minmax(0, 1fr); }
 }
-@media (max-width: 900px) {
+/* Phones in landscape are wide but short: they get the drawer too. Keep in step with SiteShell. */
+@media (max-width: 900px), (pointer: coarse) and (max-height: 500px) {
   .shell, .shell.is-collapsed { grid-template-columns: minmax(0, 1fr); }
   .sidebar { position: fixed; left: 0; width: min(18rem, 86vw); transform: translateX(-102%); visibility: hidden; transition: transform 0.22s ease, visibility 0.22s; }
   .sidebar.is-open { transform: none; visibility: visible; }
@@ -30,6 +31,42 @@
   .timeline li + li::before { top: 10px; right: calc(50% + 13px); width: calc(100% - 26px); }
   .lab-stage { padding: 16px; }
   .chip { min-width: 0; flex: 1 1 40%; }
+}
+@media (max-width: 600px) {
+  .page { gap: 22px; }
+  .page-head h1 { font-size: 26px; }
+  .sheet-head h1 { font-size: 24px; }
+  /* Module and lab cards: icon beside the title, so seven modules are not seven screens. */
+  .area-card { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; row-gap: 2px; padding: 16px; }
+  .area-card .tile { grid-row: span 2; margin: 0; }
+  .area-card .area-count { grid-column: 1 / -1; }
+  .continue-card { padding: 20px; }
+  /* The dashboard diagram is decoration: show all of it rather than a cropped part. */
+  .hero-demo .stage-svg { min-width: 0; }
+  .quiz-q { font-size: 18px; }
+}
+/* Fingers, not cursors: hit areas of at least 44px, and type that iOS does not zoom into. */
+@media (pointer: coarse) {
+  .btn, .btn-sm { min-height: 44px; }
+  .icon-btn { width: 44px; height: 44px; }
+  .search-btn { height: 44px; }
+  .side-item { min-height: 44px; }
+  .side-lesson { min-height: 40px; }
+  .search-hit { min-height: 44px; }
+  .search-close { min-height: 36px; }
+  .search-box input { height: 44px; font-size: 16px; }
+  .timeline button { min-height: 44px; align-content: center; }
+  .scrub-seg { height: 40px; }
+  .dial input { height: 44px; }
+  .dial input::-webkit-slider-thumb { width: 26px; height: 26px; margin-top: -10px; }
+  .dial input::-moz-range-thumb { width: 22px; height: 22px; }
+  .quiz-option { min-height: 52px; }
+}
+/* Hover styles stick after a tap on touch screens; keep them for real pointers. */
+@media (hover: none) {
+  .keys, .search-btn kbd { display: none; }
+  .scrub-seg:hover > span { height: 6px; }
+  a.card:hover { border-color: color-mix(in srgb, var(--border) 60%, transparent); box-shadow: var(--shadow-sm); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }

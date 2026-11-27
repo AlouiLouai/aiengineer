@@ -8,6 +8,9 @@ import { SearchDialog } from './SearchDialog';
 import { Sidebar } from './Sidebar';
 import { ThemeToggle } from './ThemeToggle';
 
+/** Where the sidebar becomes a drawer. Keep in step with styles/responsive.css. */
+const DRAWER = '(max-width: 900px), (pointer: coarse) and (max-height: 500px)';
+
 interface Props {
   nav: NavArea[];
   children: React.ReactNode;
@@ -71,7 +74,7 @@ export function SiteShell({ nav, children }: Props) {
             aria-label="Toggle sidebar"
             title="Toggle sidebar (Ctrl B)"
             onClick={() => {
-              if (window.matchMedia('(max-width: 900px)').matches) setDrawer(drawerOpen ? null : pathname);
+              if (window.matchMedia(DRAWER).matches) setDrawer(drawerOpen ? null : pathname);
               else setCollapsed(!collapsed);
             }}
           >

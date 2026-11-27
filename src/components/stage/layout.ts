@@ -207,7 +207,10 @@ export function layout(nodes: SceneNode[], scene: Scene) {
   const x1 = Math.max(...extents.map((r) => r[2])) + 24;
   const y1 = Math.max(...extents.map((r) => r[3])) + 16;
   const zoom = Math.min(VW / (x1 - x0), VH / (y1 - y0), 1.45);
-  const camera = `translate(${VW / 2 - ((x0 + x1) / 2) * zoom}px, ${VH / 2 - ((y0 + y1) / 2) * zoom}px) scale(${zoom})`;
+  const tx = VW / 2 - ((x0 + x1) / 2) * zoom;
+  const camera = `translate(${tx}px, ${VH / 2 - ((y0 + y1) / 2) * zoom}px) scale(${zoom})`;
+  /** Where a world x lands in the viewBox, after the camera. */
+  const toView = (x: number) => tx + x * zoom;
 
-  return { flows, plain, visible, curves, chips, linkChips, flowChips, stops, revealAt, camera };
+  return { flows, plain, visible, curves, chips, linkChips, flowChips, stops, revealAt, camera, toView };
 }
